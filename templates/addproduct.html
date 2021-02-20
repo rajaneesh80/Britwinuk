@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} BritwinUK {% endblock %}
+
+{% block content %}
+
+</br>
+</br>	
+{{ bob }}
+</br> 
+<h5>Upload Excel Sheet to Add Product in BritwinUK Inventory</h5>
+</br>
+{% if messages %}
+	{% for message in messages %}
+		<div class="alert-light -{{ message.tags }}" role= "alert">
+			<p {% if message.tags.last %} class ="" {% endif %}> {{ message }}</p>
+		</div>
+	{% endfor %}
+{% endif %}
+<form method="post" enctype="multipart/form-data">
+	{% csrf_token %}
+	
+	<div class="input-group input-group-lg">
+    	<input   type="file" name="myfile" aria-describedby="inputGroup-sizing-lg">
+		<button  class="btn-group btn-group-sm" type="submit">Upload</button>
+	</div>
+	</br>
+	<h6> Please Upload Excel File</h6>
+</form>	
+{% endblock %}

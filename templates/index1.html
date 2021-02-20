@@ -1,0 +1,29 @@
+<html>
+    <head>
+        <title>
+            Excel file upload and processing 
+        </title>
+    </head>
+    <body style="margin-top: 30px;margin-left: 30px;">
+<div>
+  <table class="table">
+  
+  <tbody>
+        {% for row in excel_data %}
+        <thead>          
+            <tr>
+            {% for cell in row %}
+
+            <th scope="col"></th>
+            <td style="width:15%">
+                {{ cell }}
+            </td>
+            {% endfor %}
+          </tr>
+        </thead>
+        {% endfor %}
+        </tbody>
+</table>
+</div>
+    </body>
+</html>

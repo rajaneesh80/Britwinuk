@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} BritwinUK {% endblock %}
+
+{% block content %}
+	
+{{ bob }}
+</br> 
+<h5>Current Product in BritwinUK Inventory</h5>
+</br>
+
+<h6>Product List</h6>
+
+<div class="results">
+<table class="table table-striped table-light" id="result_list">
+<thead class="thead-dark">
+<tr class="thead-dark">
+<th scope="col" >Sku</th>
+<th scope="col" >Skusize</th>
+<th scope="col" >Color</th>
+<th scope="col" >Buyprice</th>
+<th scope="col" >Style</th>
+<th scope="col" >Colornum</th>
+<th scope="col" >Size</th>
+<th scope="col" >Barcode</th>
+
+<th scope="col" >BuyCurrency</th>
+<th scope="col" >CostPriceOwnCurrency</th>
+<th scope="col" >CostCurrency</th>
+<th scope="col" >Collection</th>
+<th scope="col" >BrandName</th>
+<th scope="col" >Season</th>
+<th scope="col" >SizeRange</th>
+<th scope="col" >Article</th>
+
+</tr>
+</thead>
+<tbody>
+  {% if product_list %}
+  <ul>
+    {% for product in product_list %}
+      <tr class="">
+        <td class="field-{{product.sku}}"><a href="{{ product.get_absolute_url }}">{{ product.sku }} </a></td>
+        <td class="field-{{product.skusize}}">{{product.skusize}}</td>
+        <td class="field-{{product.color}}">{{product.colour}}</td>
+        <td class="field-{{product.buyprice}}">{{product.buyprice}}</td>
+        <td class="field-{{product.style}}">{{product.style}}</td>
+        <td class="field-{{product.colornum}}">{{product.colournum}}</td>
+        <td class="field-{{product.size}}">{{product.size}}</td>
+        <td class="field-{{product.barcode}}">{{product.barcode}}</td>
+
+        <td class="field-{{product.quantity}}">{{product.buycurrency}}</td>
+        <td class="field-{{product.quantity}}">{{product.costpriceowncurrency}}</td>
+        <td class="field-{{product.quantity}}">{{product.costcurrency}}</td>
+        <td class="field-{{product.quantity}}">{{product.collection}}</td>
+        <td class="field-{{product.quantity}}">{{product.brandname}}</td>
+        <td class="field-{{product.quantity}}">{{product.season}}</td>
+        <td class="field-{{product.quantity}}">{{product.sizerange}}</td>
+        <td class="field-{{product.quantity}}">{{product.article}}</td>
+
+      </tr>
+    {% endfor %}
+
+  </ul>
+        
+  {% else %}
+    <p>There are no product in the Company.</p>
+  {% endif %} 
+</tbody>
+</table>
+</div>
+
+    {% block pagination %}
+    {% if is_paginated %}
+        <div class="pagination">
+            <span class="page-links">
+                {% if page_obj.has_previous %}
+                    <a href="{{ request.path }}?page={{ page_obj.previous_page_number }}">previous</a>
+                {% endif %}
+                <span class="page-current">
+                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                </span>
+                {% if page_obj.has_next %}
+                    <a href="{{ request.path }}?page={{ page_obj.next_page_number }}">next</a>
+                {% endif %}
+            </span>
+        </div>
+    {% endif %}
+  {% endblock %}
+
+
+{% endblock %}

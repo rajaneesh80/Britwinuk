@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} BritwinUK {% endblock %}
+
+{% block content %}
+	
+{{ bob }}
+</br> 
+<h5>Current Stock in BritwinUK Inventory</h5>
+</br>
+
+<h6>Stock List</h6>
+
+<div class="results">
+<table class="table table-striped table-light" id="result_list">
+<thead class="thead-dark">
+<tr class="thead-dark">
+<th scope="col" >Sku</th>
+<th scope="col" >Skusize</th>
+<th scope="col" >Color</th>
+<th scope="col" >Buyprice</th>
+<th scope="col" >Style</th>
+<th scope="col" >Colornum</th>
+<th scope="col" >Size</th>
+<th scope="col" >Barcode</th>
+<th scope="col" >Quantity</th>
+</tr>
+</thead>
+<tbody>
+  {% if stock_list %}
+  <ul>
+    {% for stock in stock_list %}
+      <tr class="">
+        <td class="field-{{stock.sku}}"><a href="{{ stock.get_absolute_url }}">{{ stock.sku }} </a></td>
+        <td class="field-{{stock.skusize}}">{{stock.skusize}}</td>
+        <td class="field-{{stock.color}}">{{stock.colour}}</td>
+        <td class="field-{{stock.buyprice}}">{{stock.buyprice}}</td>
+        <td class="field-{{stock.style}}">{{stock.style}}</td>
+        <td class="field-{{stock.colornum}}">{{stock.colournum}}</td>
+        <td class="field-{{stock.size}}">{{stock.size}}</td>
+        <td class="field-{{stock.barcode}}">{{stock.barcode.barcode}}</td>
+        <td class="field-{{stock.quantity}}">{{stock.quantity}}</td>
+      </tr>
+    {% endfor %}
+
+  </ul>
+        
+  {% else %}
+    <p>There are no Inventory in the System.</p>
+  {% endif %} 
+</tbody>
+</table>
+</div>
+
+    {% block pagination %}
+    {% if is_paginated %}
+        <div class="pagination">
+            <span class="page-links">
+                {% if page_obj.has_previous %}
+                    <a href="{{ request.path }}?page={{ page_obj.previous_page_number }}">previous</a>
+                {% endif %}
+                <span class="page-current">
+                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                </span>
+                {% if page_obj.has_next %}
+                    <a href="{{ request.path }}?page={{ page_obj.next_page_number }}">next</a>
+                {% endif %}
+            </span>
+        </div>
+    {% endif %}
+  {% endblock %}
+
+
+{% endblock %}

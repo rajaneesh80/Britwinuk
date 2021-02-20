@@ -49,7 +49,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'britwin_UK.urls'
+ROOT_URLCONF = 'britwin_UK_Project.urls'
 
 TEMPLATES = [
     {
@@ -67,7 +67,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'britwin_UK.wsgi.application'
+WSGI_APPLICATION = 'britwin_UK_Project.wsgi.application'
 
 
 # Database
